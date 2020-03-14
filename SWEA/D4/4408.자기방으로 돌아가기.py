@@ -20,5 +20,5 @@ for tc in range(1, int(input())+1):
 
         for i in range(a,b+1):
             cnt[i] += 1
-    print('#{}'.format(tc + 1), max(cnt))
+    print('#{} {}'.format(tc, max(cnt)))
             #최대값이 답임. 

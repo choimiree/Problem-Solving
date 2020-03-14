@@ -14,21 +14,17 @@
 #준환이는 (x1,y1)에서 시작하여 i가 증가하는 순서대로 (xi,yi)들을 차례대로 방문하고 (xN,yN)에 도착하기 위한 비용의 최솟값은 무엇인가.
 for tc in range(1, int(input())+1):
     W, H, N = map(int, input().split())
+
     x, y = map(int, input().split()) #x1, y1
+
     ans = 0
-    for _ in range(N):  #N-1개의 좌표를 입력받는다.
+    for _ in range(N-1):  #N-1개의 좌표를 입력받는다.
         tx, ty = map(int, input().split())
         # x,y ---> tx, ty
         # 최소 거리 계산
-        if x == tx:
-            ans += abs(y - ty) #수직 이동
-        elif y == ty:
-            ans += abs(x - tx) #수평 이동
-        # a = x -tx
-        # b = y - ty
-        # if a * b < 0:
-        #     ans += abs(a) + abs(b)
-        # else:
-        #     ans += max(abs(a), abs(b))
+        if (x < tx and y > ty) or (x>tx and y<ty):    #좌상우하
+            ans += abs(x-tx) + abs(y-ty)
+        else:
+            ans += max(abs(x-tx), abs(y-ty))
         x, y = tx, ty
-    print('{} {}'.format(tc, ans))
+    print('#{} {}'.format(tc, ans))

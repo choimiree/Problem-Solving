@@ -26,9 +26,9 @@ def find(stop, k, cnt):
             mincnt = cnt
         return
 
-    if k < 1 and ch[stop] < 1:       # 방전되었는데, 충전이 안 되는 경우
-        return
-    if ch[stop]: scnt += 1
+    if k == 0 and ch[stop] < 1:       # 방전되었는데, 충전이 안 되는 경우
+        return                        # 운행종료
+    if ch[stop]: scnt += 1  #충전소를 몇 개 지났는지 카우트하기 위함. 뒤에 더이상 충전소가  없을 경우 충전을 하는 경우를 제외시키기 위함.
     if cnt < mincnt:
         if k > 0:
             find(stop+1, k-1, cnt)      # 충전하지 않은 경우
@@ -39,16 +39,16 @@ def find(stop, k, cnt):
 
 
 for tc in range(1, int(input())+1):
-    K, N, M = map(int, input().split())
+    K, N, M = map(int, input().split()) #K:이동거리, N:정류장수, M:충전기 수
     stops = list(map(int, input().split()))
 
     ch = [0]*(N+1)
     for i in range(M):
-        ch[stops[i]] = 1
+        ch[stops[i]] = 1 #현재 정류장 stop이 충전이 가능한지 여부
 
     mincnt = 999
-    scnt = 0
+    scnt = 0 #현재까지 충전소 개수. M은 총충전소 개수
     find(0, K, 0)
-    if mincnt == 999:
+    if mincnt == 999: #종점까지 가지 못한 경우
         mincnt = 0
     print(f'#{tc} {mincnt}')
