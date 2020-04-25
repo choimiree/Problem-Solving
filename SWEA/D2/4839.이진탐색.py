@@ -1,3 +1,4 @@
+'''
 def binarySearch(lo, hi, key):
     if lo > hi: return
     mid = (lo + hi) >> 1 #비트표현
@@ -13,31 +14,19 @@ for tc in range(1, int(input())+1):
     B = binarySearch(1,p,pb)
 print('#{} {}'.format(tc, return))
 '''
-T=int(input())
-for tc in range(1, T+1):
-    temp = list(map(int, input().split()))
-    result = []
-    for i in range(2):
-        start = 1
-        end = temp[0]
-        page = temp[i+1]
-        cnt = 0
-        while start <= end:
-            mid = (start+end)//2
-            if mid == page:
-                break
-            elif mid < page:
-                start = mid
-                cnt += 1
-            else:
-                end = mid
-                cnt += 1
-        result.append(cnt)
+def makeT(n):
+    global idx
+    global N
+    if n <= N:
+        makeT(n*2)  #왼쪽 서브트리 방문
+        tree[n] = idx   #중위 순회로 현재 노드값 저장
+        idx += 1
+        makeT(n*2+1)    #오른쪽 서브트리 방문
 
-    if result[0] < result[1]:
-        print('#{} A'.format(tc))
-    elif result[0] > result[1]:
-        print('#{} B'.format(tc))
-    else:
-        print('#{} 0'.format(tc))
-'''
+T = int(input())
+for tc in range(1,T+1):
+    N = int(input())
+    idx = 1
+    tree = [0 for i in range(N+1)]  #리스트를 이용한 완전 이진트리 저장
+    makeT(1)
+    print('#{} {} {}'.format(tc, tree[1], tree[N//2]))
