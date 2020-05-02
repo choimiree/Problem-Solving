@@ -15,7 +15,7 @@ N자리 16진수가 주어지면 각 자리 수를 4자리 2진수로 표시하�
 2. ''.format()를 이용하면 숫자를 다른 진법의 수로 바꿀 수 있어요
 '''
 import sys
-sys.stdin = open("5185input.txt","r")
+sys.stdin = open("5185.txt","r")
 
 for tc in range(int(input())):
     print('#{} {}'.format(tc+1, ''.join(['{:04b}'.format(int(s,16)) for s in input().split()[1]])))
