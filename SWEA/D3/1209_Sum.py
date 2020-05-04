@@ -9,7 +9,7 @@ for tc in range(1, 11):
 
     result = []
     leftcross = 0 #왼쪽위에서 오른쪽 아래로 내려가는 대각선 합
-    rightcross = 0 #우른쪽위에서 왼쪽 아래로 내려가는 대각선 합
+    rightcross = 0 #오른쪽위에서 왼쪽 아래로 내려가는 대각선 합
 
     for i in range(0, 100):
         linesum = 0 #행의 합은 행이 바뀔 때마다 초기화
